@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    <nav>
+        <h1>Library</h1>
+    </nav>
+    <button id='add-book' onclick="displayForm()">+ Add Book</button>
+    <div id="cards">
+    </div>
+    <form id="form">
+        <input type="text" id="title" name="book-title" placeholder="Title" required="">
+        <input type="text" name="book-author" id="author" placeholder="Author" required="">
+        <input type="number" name="book-pages" id="pages" min="1" required="" placeholder="No. of pages" max="10000">
+        <div class="flex-row">
+            <label for="book-finished">Read?: </label>
+            <input type="checkbox" name="book-finished" id="finished">
+        </div>
+        <button type="submit" id="btn">Add</button>
+    </form>
+    <div id="gray-background"onclick="displayForm()">
+    </div>
+
+    <footer>
+        <p>Copyright © <a href="https://denislisunov.xyz" target="_blank">Denis Lisunov</a> <span id="year"> </span></p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
