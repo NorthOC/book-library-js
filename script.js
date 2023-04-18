@@ -1,46 +1,57 @@
 let myLibrary = [];
 
-function Book(title, author, pages, finished) {
-  // the constructor...
-  this.title = title
-  this.author = author
-  this.pages = pages
-  this.finished = finished
-}
+class Book {
+    constructor(title, author, pages, finished){
+        this.title = title
+        this.author = author
+        this.pages = pages
+        this.finished = finished 
+    }
 
-Book.prototype.toggleFinished = function () {
-    if (this.finished){
-        this.finished = false; 
-    } else{
-        this.finished = true;
+    toggleFinished() {
+        if (this.finished){
+            this.finished = false; 
+        } else{
+            this.finished = true;
+        }
     }
 }
 
-const addBook = (e) => {
+function addBook(e) {
     e.preventDefault();
     addBookToLibrary();
 }
 
-function addBookToLibrary() {
-  // do stuff here
-  
-  let title = document.getElementById("title").value;
-  let author = document.getElementById("author").value;
-  let pages = document.getElementById("pages").value;
-  let finished = document.getElementById("finished").checked;
-
-  let book = new Book(title, author, pages, finished)
-  //console.log(book);
-
-  document.getElementById("form").reset();
-  
-  myLibrary.push(book);
-
-  displayForm();
-
-  refreshTable();
-
+function changeBookStatus(id){
+    myLibrary[id].toggleFinished();
+    refreshTable();
 }
+
+function deleteBook(id){
+    myLibrary.splice(id, 1);
+    refreshTable();
+}
+
+function addBookToLibrary() {
+    // do stuff here
+    
+    let title = document.getElementById("title").value;
+    let author = document.getElementById("author").value;
+    let pages = document.getElementById("pages").value;
+    let finished = document.getElementById("finished").checked;
+
+    let book = new Book(title, author, pages, finished)
+    //console.log(book);
+
+    document.getElementById("form").reset();
+    
+    myLibrary.push(book);
+
+    displayForm();
+
+    refreshTable();
+
+    }
 
 function refreshTable(){
     let table = document.getElementById("cards");
@@ -92,24 +103,14 @@ function refreshTable(){
         table.appendChild(card);
 
       }
-}
+    }
 
 function displayForm(){
-    let form = document.getElementById("form");
-    let bg = document.getElementById("gray-background");
-    form.classList.toggle("visible")
-    bg.classList.toggle("visible")
-}
-
-function changeBookStatus(id){
-    myLibrary[id].toggleFinished();
-    refreshTable();
-}
-
-function deleteBook(id){
-    myLibrary.splice(id, 1);
-    refreshTable();
-}
+        let form = document.getElementById("form");
+        let bg = document.getElementById("gray-background");
+        form.classList.toggle("visible")
+        bg.classList.toggle("visible")
+    }
 
 let form = document.getElementById("form");
 form.onsubmit = addBook;
